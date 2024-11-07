@@ -1,7 +1,13 @@
 package stepDef;
 
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StepDef {
 
@@ -19,4 +25,29 @@ public class StepDef {
     }
 
 
+    @When("I search for books by author Erik Larson")
+    public void iSearchForBooksByAuthorErikLarson() {
+        
+    }
+
+    @Then("I find {int} books")
+    public void iFindBooks(int arg0) {
+    }
+
+    @Given("I have the following books in the store by list")
+    public void iHaveTheFollowingBooksInTheStoreByList(DataTable table) {
+        List<List<String>> rows = table.asLists(String.class);
+        System.out.println(rows);
+
+    }
+
+    @Given("I have the following books in the store by map")
+    public void iHaveTheFollowingBooksInTheStoreByMap(DataTable table) {
+
+        List<Map<String, String>> rows = table.asMaps(String.class, String.class);
+        List<String> titleData = rows.stream().flatMap(map -> map.entrySet().stream())
+                .filter(entry -> entry.getKey().equals("title"))
+                .map(Map.Entry::getValue).collect(Collectors.toList());
+        titleData.forEach(System.out::println);
+    }
 }

@@ -1,19 +1,31 @@
 package org.example;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        String str = "India is a great country";
+        str = str.toLowerCase();
+        List<String> strList = str.chars().mapToObj(s-> String.valueOf((char)s)).collect(Collectors.toList());
+        long aCoutn = strList.stream().filter(s->s.contains("a")).collect(Collectors.toList()).stream().count();
+        System.out.println("Count of A is : "+aCoutn);
+        long eCoutn = strList.stream().filter(s->s.contains("e")).collect(Collectors.toList()).stream().count();
+        System.out.println("Count of E is : "+eCoutn);
+        long iCoutn = strList.stream().filter(s->s.contains("i")).collect(Collectors.toList()).stream().count();
+        System.out.println("Count of I is : "+iCoutn);
+        long oCoutn=strList.stream().filter(s->s.contains("o")).collect(Collectors.toList()).stream().count();
+        System.out.println("Count of O is : "+oCoutn);
+        long uCoutn=strList.stream().filter(s->s.contains("u")).collect(Collectors.toList()).stream().count();
+        System.out.println("Count of U is : "+uCoutn);
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+
+
+
+
+
     }
 }
